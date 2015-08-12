@@ -1,0 +1,21 @@
+*.pyc
+*.rb.lock
+
+# OS X
+.DS_Store
+
+# sass
+.sass-cache
+
+# build
+dist
+.tmp
+
+# bower components
+bower_components
+
+# node modules
+node_modules
+
+# PyCharm
+.idea
