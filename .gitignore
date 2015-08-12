@@ -17,5 +17,8 @@ bower_components
 # node modules
 node_modules
 
+# egg
+*.egg-info
+
 # PyCharm
 .idea
