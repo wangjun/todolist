@@ -13,4 +13,4 @@ html ng-app="app"
     script src="/static/javascript/app.js"
 
   body
-    h2 X
+    div ui-view=""

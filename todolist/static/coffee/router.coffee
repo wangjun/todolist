@@ -10,7 +10,7 @@ angular.module 'app.router', [
 
   # redirect other urls
   $urlRouterProvider.otherwise ($injector) ->
-    $app = $injector.get '$sora'
+    $app = $injector.get '$app'
     $app.go 'web.index', null,
       reload: yes
       location: 'replace'
@@ -19,18 +19,18 @@ angular.module 'app.router', [
   # ---------------------------------------------------------
   #
   # ---------------------------------------------------------
-    $stateProvider.state 'web',
-      url: ''
-      templateUrl: '/static/templates/layout.html'
-      controller: 'BaseController'
+  $stateProvider.state 'web',
+    url: ''
+    templateUrl: '/static/templates/layout.html'
+    controller: 'BaseController'
 
-    # ---------------------------------------------------------
-    # /
-    # ---------------------------------------------------------
-    $stateProvider.state 'web.index',
-        url: '/'
-        resolve:
-            title: -> "todolist"
-        templateUrl: '/static/templates/index.html'
-        controller: 'IndexController'
+  # ---------------------------------------------------------
+  # /
+  # ---------------------------------------------------------
+  $stateProvider.state 'web.index',
+    url: '/'
+    resolve:
+      title: -> "todolist"
+    templateUrl: '/static/templates/index.html'
+    controller: 'IndexController'
 ]
