@@ -1,0 +1,26 @@
+<div class="navbar navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="login-wrapper nav navbar-nav navbar-right hidden-xs" ng-hide="$user.is_login">
+                <li>
+                    <a href="/login" class="text-muted link-login text-uppercase">Sign in</a>
+                </li>
+                <li>
+                    <a ng-click="modalRegister.showModal($event)" class="text-success text-uppercase" href="/register">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
