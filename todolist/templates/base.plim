@@ -1,3 +1,6 @@
+-py!
+  import json
+
 html ng-app="app"
   head
     meta charset="UTF-8"
@@ -14,3 +17,7 @@ html ng-app="app"
 
   body
     div ui-view=""
+    -py
+      user_data = json.dumps(user)
+    script
+      var user = ${user_data|n};
