@@ -12,7 +12,12 @@ requires = [
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
+    'transaction>=1.4.3',
+    'pyramid_tm>=0.11',
     'waitress',
+    'redis>=2.10.1',
+    'SQLAlchemy>=1.0.3',
+    'psycopg2>=2.6',
     ]
 
 setup(name='todolist',
@@ -38,5 +43,8 @@ setup(name='todolist',
       entry_points="""\
       [paste.app_factory]
       main = todolist:main
+      [console_scripts]
+      initialize_db = todolist.scripts.initializedb:main
+      setup_data = todolist.scripts.setupdata:main
       """,
       )
