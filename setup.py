@@ -14,6 +14,7 @@ requires = [
     'pyramid_debugtoolbar',
     'transaction>=1.4.3',
     'pyramid_tm>=0.11',
+    'pyramid_redis_sessions',
     'waitress',
     'redis>=2.10.1',
     'SQLAlchemy>=1.0.3',
