@@ -61,7 +61,7 @@ angular.module 'app.provider', []
       getItems: (args) =>
     user:
       login: (email, password) =>
-        @http
+        return @http
           method: 'post'
           url: '/api/login'
           data:

@@ -1,0 +1,36 @@
+<div app-modal="modalLogin" class="modal fade">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <div class="modal-header">
+                <p class="h3">Login</p>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input validator="[required, min2]" ng-model="form.username" maxlength="100"
+                           type="text" class="form-control" id="input-username" placeholder="{{ _('Username') }}">
+                </div>
+                <div class="form-group">
+                    <input validator="[required, min5]" ng-model="form.password" maxlength="16"
+                           type="password" class="form-control" id="input-password" placeholder="{{ _('Password') }}">
+                </div>
+                <div ng-show="form.isLoginFailed" class="form-group has-error">
+                        <label class="control-label error">Please check username and password.</label>
+                </div>
+                <div class="from-group">
+                    <a ng-click="modalLogin.hide()" href="/reset_password">Reset password</a>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button ng-click="form.submit($event)" ng-disabled="$loadings.hasAny()"
+                            type="submit" class="btn btn-success btn-block btn-lg">Sign in</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -15,10 +15,7 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right hidden-xs" ng-hide="$user.is_login">
                 <li>
-                    <a href="/login" class="text-muted link-login text-uppercase">Sign in</a>
-                </li>
-                <li>
-                    <a ng-click="modalRegister.showModal($event)" class="text-success text-uppercase" href="/register">Sign up</a>
+                    <a ng-click="modalLogin.showModal($event)" href="/login" class="text-muted link-login text-uppercase">Sign in</a>
                 </li>
             </ul>
         </div>
