@@ -5,6 +5,7 @@ from pyramid.paster import (
     setup_logging,
 )
 import transaction
+from todolist import utils
 from todolist.db import session
 from todolist.models.user import User
 
@@ -24,11 +25,9 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     session.configure(bind=engine)
 
-    print('x')
-
     user = User()
     user.name = 'Kelp'
     user.email = 'kelp.chen@biideal.com.tw'
-    user.password = 'x'
+    user.password = utils.hash_password('123')
     session.add(user)
     transaction.commit()

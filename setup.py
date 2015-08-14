@@ -18,6 +18,7 @@ requires = [
     'redis>=2.10.1',
     'SQLAlchemy>=1.0.3',
     'psycopg2>=2.6',
+    'Plim>=0.9.11',
     ]
 
 setup(name='todolist',
