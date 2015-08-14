@@ -1,5 +1,9 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPBadRequest
+from pyramid.security import (
+    remember,
+    forget,
+)
 from todolist import utils
 from todolist.forms.user import LoginForm
 from todolist.models.user import User
@@ -15,5 +19,9 @@ def login(request):
     if not user or user.password != utils.hash_password(form.password.data):
         raise HTTPBadRequest()
 
-    request.session['user_id'] = user.id
+    remember(request, user.id)
     return user.dict()
+
+@view_config(route_name='get_my_information', permission='login', request_method='GET', renderer='json')
+def get_my_information(request):
+    return {'x': request.user.email}

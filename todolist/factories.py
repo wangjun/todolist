@@ -8,7 +8,7 @@ from pyramid.security import (
 class RootFactory(object):
     __acl__ = [
         (Allow, Everyone, 'everyone'),
-        (Allow, Authenticated, 'login')
+        (Allow, Authenticated, 'login'),
     ]
 
     def __init__(self, request):
