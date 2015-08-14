@@ -59,6 +59,14 @@ angular.module 'app.provider', []
   @api =
     item:
       getItems: (args) =>
+    user:
+      login: (email, password) =>
+        @http
+          method: 'post'
+          url: '/api/login'
+          data:
+            email: email
+            password: password
 
 
   @$get = ['$injector', ($injector) =>

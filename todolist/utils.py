@@ -10,3 +10,12 @@ def hash_password(password):
     return base64.b64encode(
         hashlib.sha384(password.encode('utf-8')).digest()
     ).decode('utf-8')
+
+def get_iso_format(date_time):
+    """
+    :param date_time: {datetime} The datetime.
+    :return: {str} The iso format datetime "yyyy-MM-ddTHH:mm:ss.ssssssZ"
+    """
+    if not date_time:
+        return None
+    return date_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ')

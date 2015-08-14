@@ -9,7 +9,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
-    'pyramid',
+    'pyramid==1.5.7',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
     'transaction>=1.4.3',
@@ -20,6 +20,7 @@ requires = [
     'SQLAlchemy>=1.0.3',
     'psycopg2>=2.6',
     'Plim>=0.9.11',
+    'WTForms>=2.0.0',
     ]
 
 setup(name='todolist',
