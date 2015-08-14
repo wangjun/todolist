@@ -5,6 +5,7 @@ from sqlalchemy import (
 )
 from todolist.db import Base
 
+
 class User(Resource, Base):
     __tablename__ = 'users'
     name = Column(Unicode, nullable=False)

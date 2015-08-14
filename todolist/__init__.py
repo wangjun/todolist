@@ -1,14 +1,17 @@
 from pyramid.config import Configurator
 from pyramid.authentication import SessionAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
-from . import routers
-from . import views, subscribers
+from sqlalchemy import engine_from_config
+from . import routers, views, subscribers, db
 from .factories import RootFactory
 
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    engine = engine_from_config(settings, 'sqlalchemy.')
+    db.session.configure(bind=engine)
+
     config = Configurator(
         settings=settings,
         root_factory=RootFactory,
