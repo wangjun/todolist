@@ -6,7 +6,7 @@ angular.module 'app.controllers.base', []
   $scope.modalLogin =
     email: null
     password: null
-    autoShow: yes
+    autoShow: no
     showModal: ($event) ->
       $event.preventDefault()
       $scope.modalLogin.show()
