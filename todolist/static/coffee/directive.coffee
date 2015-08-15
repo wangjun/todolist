@@ -1,6 +1,16 @@
 angular.module 'app.directive', []
 
 # ---------------------------------------------------------
+# app-focus
+# ---------------------------------------------------------
+.directive 'appFocus', () ->
+  return {
+    restrict: 'A'
+    link: (scope, element) ->
+      element.select()
+  }
+
+# ---------------------------------------------------------
 # app-modal
 # ---------------------------------------------------------
 .directive 'appModal', ['$injector', ($injector) ->
