@@ -41,13 +41,13 @@ angular.module 'app.directive', []
           scope.$apply ->
             scope.$eval modal.hiddenCallback,
               $event: e
-        element.on 'shown.bs.modal', ->
-          # focus the first element
-          $firstController = element.find('.form-control:not(.tt-hint):first')
-          if $firstController.length
-            $firstController.select()
-          else
-            element.find('[type=submit]').focus()
+      element.on 'shown.bs.modal', ->
+        # focus the first element
+        $firstController = element.find('.form-control:not(.tt-hint):first')
+        if $firstController.length
+          $firstController.select()
+        else
+          element.find('[type=submit]').focus()
       if modal.autoShow
         # pop the modal
         element.modal 'show'
