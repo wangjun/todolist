@@ -24,4 +24,4 @@ def login(request):
 
 @view_config(route_name='get_my_information', permission='login', request_method='GET', renderer='json')
 def get_my_information(request):
-    return {'x': request.user.email}
+    return request.user.dict()
