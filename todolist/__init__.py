@@ -4,7 +4,7 @@ from pyramid.authorization import ACLAuthorizationPolicy
 from sqlalchemy import engine_from_config
 from . import routers, views, subscribers, db
 from .factories import RootFactory
-from .auth import find_user_group
+from .auth import authentication
 
 
 def main(global_config, **settings):
@@ -17,7 +17,7 @@ def main(global_config, **settings):
         settings=settings,
         root_factory=RootFactory,
         authentication_policy=SessionAuthenticationPolicy(
-            callback=find_user_group,
+            callback=authentication,
         ),
         authorization_policy=ACLAuthorizationPolicy(),
     )
