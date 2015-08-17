@@ -3,4 +3,5 @@ angular.module 'app', [
   'app.directive'
   'app.provider'
   'app.router'
+  'app.validations'
 ]

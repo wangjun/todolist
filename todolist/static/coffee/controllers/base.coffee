@@ -2,9 +2,11 @@ angular.module 'app.controllers.base', []
 
 .controller 'BaseController', ['$scope', '$injector', ($scope, $injector) ->
   $app = $injector.get '$app'
+  $validator = $injector.get '$validator'
+  $timeout = $injector.get '$timeout'
 
   $scope.modalLogin =
-    email: null
+    email: 'kelp.chen@biideal.com.tw'
     password: null
     autoShow: no
     showModal: ($event) ->
@@ -12,8 +14,13 @@ angular.module 'app.controllers.base', []
       $scope.modalLogin.show()
     submit: ($event) ->
       $event.preventDefault()
-      $app.progress.start()
-      $app.api.user.login('kelp.chen@biideal.com.tw', '123').success (result) ->
-        $app.progress.done()
-        console.log result
+      $validator.validate($scope, 'modalLogin').success ->
+        $app.progress.start()
+        $app.api.user.login($scope.modalLogin.email, $scope.modalLogin.password).success (result) ->
+          $app.progress.done()
+          $app.setupUser result
+          $scope.modalLogin.hide()
+          $scope.modalLogin.password = ''
+          $timeout ->
+            $validator.reset $scope, 'modalLogin'
 ]
