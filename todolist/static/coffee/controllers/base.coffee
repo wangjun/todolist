@@ -23,4 +23,13 @@ angular.module 'app.controllers.base', []
           $scope.modalLogin.password = ''
           $timeout ->
             $validator.reset $scope, 'modalLogin'
+
+  $scope.modalNewItem =
+    title: null
+    autoShow: no
+    showModal: ($event) ->
+      $event.preventDefault()
+      $scope.modalNewItem.show()
+    submit: ($event) ->
+      $event.preventDefault()
 ]
