@@ -2,6 +2,23 @@ angular.module 'app.router', [
   'ui.router'
 ]
 
+.run ['$injector', ($injector) ->
+  $rootScope = $injector.get '$rootScope'
+  $state = $injector.get '$state'
+  $app = $injector.get '$app'
+
+  $rootScope.$state = $state
+
+  # ui.router state change event
+  changeStartEvent = null
+  $rootScope.$on '$stateChangeStart', ->
+    $app.progress.start()
+  $rootScope.$on '$stateChangeSuccess', ->
+    $app.progress.done()
+  $rootScope.$on '$stateChangeError', ->
+    $app.progress.done()
+]
+
 .config ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) ->
   # html5 mode
   $locationProvider.html5Mode

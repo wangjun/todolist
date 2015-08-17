@@ -178,20 +178,20 @@ angular.module 'app.directive', []
       ###
       return if $datePicker # don't double show date picker
       template = """
-            <div class='app-date-picker fade panel panel-default'>
-            <table class='table table-condensed'>
-                <thead>
-                <tr>
-                    <th class="prev"><i class="fa fa-angle-double-left"></i></th>
-                    <th class='title disabled' colspan="5"></th>
-                    <th class='next'><i class="fa fa-angle-double-right"></i></th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            </div>
-            """
+        <div class='app-date-picker fade panel panel-default'>
+          <table class='table table-condensed'>
+            <thead>
+              <tr>
+                <th class="prev"><i class="fa fa-angle-double-left"></i></th>
+                <th class='title disabled' colspan="5"></th>
+                <th class='next'><i class="fa fa-angle-double-right"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        """
       $datePicker = $(template)
       $tbody = $datePicker.find('tbody')
 

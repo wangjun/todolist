@@ -1,7 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h3>index</h3>
+            <div ng-repeat="event in events.items" class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="pull-right">due on {{ event.due_date|date:'yyyy/M/d' }}</span>
+                    <h3 class="panel-title">{{ event.title }}</h3>
+                </div>
+                <div class="panel-body">
+                    <pre ng-show="event.description">{{ event.description }}</pre>
+                </div>
+            </div>
         </div>
     </div>
 </div>

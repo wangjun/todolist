@@ -41,8 +41,16 @@ angular.module 'app.controllers.base', []
       $scope.modalNewEvent.show()
     submit: ($event) ->
       $event.preventDefault()
-      $app.progress.start()
-      $app.api.event.addMyEvent($scope.modalNewEvent).success (result) ->
-        $app.progress.done()
-        console.log result
+      $validator.validate($scope, 'modalNewEvent').success ->
+        $app.progress.start()
+        $app.api.event.addMyEvent($scope.modalNewEvent).success (result) ->
+          $app.progress.done()
+          $scope.modalNewEvent.title = ''
+          $scope.modalNewEvent.due_date = new Date()
+          $scope.modalNewEvent.due_date.setDate($scope.modalNewEvent.due_date.getDate() + 7)
+          $scope.modalNewEvent.description = ''
+          $timeout ->
+            $validator.reset $scope, 'modalNewEvent'
+          $scope.modalNewEvent.hide()
+          $scope.$broadcast 'new-event', result
 ]
