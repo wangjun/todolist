@@ -1,6 +1,8 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPBadRequest
+import transaction
 from todolist.forms import PageForm
+from todolist.forms.event import EventForm
 from todolist.models import PageList
 from todolist.models.event import Event
 
@@ -22,3 +24,23 @@ def get_my_events(request):
     events = query.all()
     total = query.count()
     return PageList(form.index.data, form.size.data, total, events).dict()
+
+@view_config(route_name='add_my_event', permission='login', request_method='POST', renderer='json')
+def add_my_event(request):
+    """
+    POST /api/me/events
+    :param request:
+    :return:
+    """
+    form = EventForm(**request.json)
+    if not form.validate():
+        raise HTTPBadRequest()
+
+    event = Event()
+    event.title = form.title.data
+    event.description = form.description.data
+    event.due_date = form.due_date.data
+    event.user_id = request.user.id
+    event.save()
+    transaction.commit()
+    return event.dict()

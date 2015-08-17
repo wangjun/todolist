@@ -10,3 +10,4 @@ def add_routers(config):
     # /api/me
     config.add_route('get_my_information', '/api/me')
     config.add_route('get_my_events', '/api/me/events')
+    config.add_route('add_my_event', '/api/me/events')

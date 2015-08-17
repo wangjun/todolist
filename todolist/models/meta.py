@@ -14,3 +14,6 @@ class Resource(object):
     @classmethod
     def query(cls):
         return db.session.query(cls)
+
+    def save(self):
+        db.session.add(self)

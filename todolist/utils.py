@@ -1,4 +1,5 @@
 import base64, hashlib
+from datetime import datetime
 
 
 def hash_password(password):
@@ -19,6 +20,20 @@ def get_iso_format(date_time):
     if not date_time:
         return None
     return date_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+def parse_ios_format(iso_format):
+    """
+    :param iso_format: {str} The iso format datetime. "yyyy-MM-ddTHH:mm:ss.ssssssZ"
+    :return: {datetime}
+    """
+    if not iso_format:
+        return None
+    try:
+        return datetime.strptime(iso_format, '%Y-%m-%dT%H:%M:%S.%fZ')
+    except ValueError:
+        try:
+            return datetime.strptime(iso_format, '%Y-%m-%dT%H:%M:%SZ')
+        except ValueError:
+            return None
 
 def int_filter(value):
     """

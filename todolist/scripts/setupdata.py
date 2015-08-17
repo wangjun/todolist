@@ -29,5 +29,5 @@ def main(argv=sys.argv):
     user.name = 'Kelp'
     user.email = 'kelp.chen@biideal.com.tw'
     user.password = utils.hash_password('12345')
-    session.add(user)
+    user.save()
     transaction.commit()

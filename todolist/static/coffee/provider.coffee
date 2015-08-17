@@ -81,7 +81,11 @@ angular.module 'app.provider', []
           url: '/api/me/events'
           params:
             index: args.index
-
+      addMyEvent: (event) =>
+        return @http
+          method: 'post'
+          url: '/api/me/events'
+          data: event
 
   @$get = ['$injector', ($injector) =>
     @setupProvider $injector
