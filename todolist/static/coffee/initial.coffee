@@ -1,0 +1,2 @@
+NProgress.configure
+    showSpinner: no
