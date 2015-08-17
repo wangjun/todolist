@@ -5,7 +5,7 @@ angular.module 'app.provider', []
   $rootScope = null
   $state = null
 
-  @setupProvider = ($injector) ->
+  @setupProvider = ($injector) =>
     $http = $injector.get '$http'
     $rootScope = $injector.get '$rootScope'
     $state = $injector.get '$state'
@@ -15,6 +15,7 @@ angular.module 'app.provider', []
         for key of @ when key isnt 'hasAny'
           return yes
         return no
+    $rootScope.$user = @user
 
 
   @setupUser = (user={}) =>
