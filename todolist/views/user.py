@@ -37,7 +37,7 @@ def logout(request):
     forget(request)
     return {}
 
-@view_config(route_name='get_my_information', permission='login', request_method='GET', renderer='json')
+@view_config(route_name='my_information', permission='login', request_method='GET', renderer='json')
 def get_my_information(request):
     """
     GET /api/me

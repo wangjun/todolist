@@ -34,10 +34,15 @@ angular.module 'app.controllers.base', []
   $scope.modalNewEvent =
     title: null
     due_date: dueDate
+    description: null
     autoShow: no
     showModal: ($event) ->
       $event.preventDefault()
       $scope.modalNewEvent.show()
     submit: ($event) ->
       $event.preventDefault()
+      $app.progress.start()
+      $app.api.event.addMyEvent($scope.modalNewEvent).success (result) ->
+        $app.progress.done()
+        console.log result
 ]

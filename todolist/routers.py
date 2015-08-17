@@ -8,6 +8,5 @@ def add_routers(config):
     config.add_route('logout', '/api/logout')
 
     # /api/me
-    config.add_route('get_my_information', '/api/me')
-    config.add_route('get_my_events', '/api/me/events')
-    config.add_route('add_my_event', '/api/me/events')
+    config.add_route('my_information', '/api/me')
+    config.add_route('my_events', '/api/me/events')

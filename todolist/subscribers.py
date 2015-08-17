@@ -1,4 +1,5 @@
 from pyramid.events import subscriber, BeforeRender
+import transaction
 
 
 @subscriber(BeforeRender)
@@ -14,3 +15,7 @@ def add_user(event):
                 'is_login': False,
             }
         })
+
+@subscriber(BeforeRender)
+def commit(event):
+    transaction.commit()

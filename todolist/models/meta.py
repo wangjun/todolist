@@ -17,3 +17,4 @@ class Resource(object):
 
     def save(self):
         db.session.add(self)
+        db.session.flush()
