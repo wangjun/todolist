@@ -70,6 +70,17 @@ angular.module 'app.provider', []
         return @http
           method: 'post'
           url: '/api/logout'
+    event:
+      getMyEvents: (args) =>
+        ###
+        @params args:
+          index: {int}
+        ###
+        return @http
+          method: 'get'
+          url: '/api/me/events'
+          params:
+            index: args.index
 
 
   @$get = ['$injector', ($injector) =>

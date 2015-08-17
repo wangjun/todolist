@@ -11,6 +11,11 @@ from todolist.models.user import User
 
 @view_config(route_name='login', request_method='POST', renderer='json')
 def login(request):
+    """
+    POST /api/login
+    :param request:
+    :return:
+    """
     form = LoginForm(**request.json)
     if not form.validate():
         raise HTTPBadRequest()
@@ -24,9 +29,19 @@ def login(request):
 
 @view_config(route_name='logout', permission='login', request_method='POST', renderer='json')
 def logout(request):
+    """
+    POST /api/logout
+    :param request:
+    :return:
+    """
     forget(request)
     return {}
 
 @view_config(route_name='get_my_information', permission='login', request_method='GET', renderer='json')
 def get_my_information(request):
+    """
+    GET /api/me
+    :param request:
+    :return:
+    """
     return request.user.dict()

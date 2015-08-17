@@ -28,9 +28,21 @@ angular.module 'app.router', [
   # /
   # ---------------------------------------------------------
   $stateProvider.state 'web.index',
-    url: '/'
+    url: '/?index'
     resolve:
       title: -> "todolist"
+      events: ['$app', '$stateParams', ($app, $stateParams) ->
+        if not $app.user.is_login
+          return {
+            items: []
+            total: 0
+          }
+
+        args =
+          index: $stateParams.index
+        return $app.api.event.getMyEvents(args).then (response) ->
+          return response.data
+      ]
     templateUrl: '/static/templates/index.html'
     controller: 'IndexController'
 ]

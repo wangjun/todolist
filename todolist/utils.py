@@ -19,3 +19,12 @@ def get_iso_format(date_time):
     if not date_time:
         return None
     return date_time.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+
+def int_filter(value):
+    """
+    The int filter for wtforms.
+    """
+    try:
+        return int(value)
+    except:
+        return 0
