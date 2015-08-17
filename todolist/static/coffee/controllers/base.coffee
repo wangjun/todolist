@@ -5,6 +5,11 @@ angular.module 'app.controllers.base', []
   $validator = $injector.get '$validator'
   $timeout = $injector.get '$timeout'
 
+  $scope.logout = ($event) ->
+    $event.preventDefault()
+    $app.progress.start()
+    $app.api.user.logout().success ->
+      location.reload()
   $scope.modalLogin =
     email: 'kelp.chen@biideal.com.tw'
     password: null

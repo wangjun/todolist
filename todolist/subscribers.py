@@ -4,7 +4,7 @@ from pyramid.events import subscriber, BeforeRender
 @subscriber(BeforeRender)
 def add_user(event):
     request = event.get('request')
-    if request.user:
+    if hasattr(request, 'user') and request.user:
         event.update({
             'user': request.user.dict(),
         })

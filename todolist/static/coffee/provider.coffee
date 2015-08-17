@@ -58,8 +58,6 @@ angular.module 'app.provider', []
       @progress.done()
 
   @api =
-    item:
-      getItems: (args) =>
     user:
       login: (email, password) =>
         return @http
@@ -68,6 +66,10 @@ angular.module 'app.provider', []
           data:
             email: email
             password: password
+      logout: =>
+        return @http
+          method: 'post'
+          url: '/api/logout'
 
 
   @$get = ['$injector', ($injector) =>
