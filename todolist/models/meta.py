@@ -18,3 +18,6 @@ class Resource(object):
     def save(self):
         db.session.add(self)
         db.session.flush()
+
+    def delete(self):
+        db.session.delete(self)

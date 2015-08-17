@@ -9,6 +9,10 @@
                 <div class="panel-body">
                     <pre ng-show="event.description">{{ event.description }}</pre>
                 </div>
+                <div class="text-right">
+                    <button ng-click="deleteEvent($event, $index)" ng-disabled="$loadings.hasAny()"
+                            class="btn btn-link">Delete</button>
+                </div>
             </div>
 
             <ul ng-show="events" app-pager="events" pager-url-template="/?index=#{index}" class="pull-right"></ul>

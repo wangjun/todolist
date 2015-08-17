@@ -1,5 +1,5 @@
 from pyramid.view import view_config
-from pyramid.httpexceptions import HTTPBadRequest
+from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound, HTTPForbidden
 from todolist.forms.page import PageForm
 from todolist.forms.event import EventForm
 from todolist.models.page_list import PageList
@@ -42,3 +42,20 @@ def add_my_event(request):
     event.user_id = request.user.id
     event.save()
     return event.dict()
+
+@view_config(route_name='my_event', permission='login', request_method='DELETE', renderer='json')
+def delete_my_event(request):
+    """
+    DELETE /api/me/events/<event_id>
+    :param request:
+    :param event_id:
+    :return:
+    """
+    event = Event.query().get(request.matchdict.get('event_id'))
+    if not event:
+        raise HTTPNotFound()
+    if event.user_id != request.user.id:
+        raise HTTPForbidden()
+    event.delete()
+
+    return {}

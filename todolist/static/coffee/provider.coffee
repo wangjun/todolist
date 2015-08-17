@@ -95,6 +95,10 @@ angular.module 'app.provider', []
             title: event.title
             due_date: event.due_date
             description: event.description
+      deleteMyEvent: (eventId) =>
+        return @http
+          method: 'delete'
+          url: "/api/me/events/#{eventId}"
 
   @$get = ['$injector', ($injector) =>
     @setupProvider $injector
