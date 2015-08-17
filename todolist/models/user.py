@@ -19,4 +19,5 @@ class User(Resource, Base):
             'name': self.name,
             'email': self.email,
             'created_at': utils.get_iso_format(self.created_at),
+            'is_login': True,
         }

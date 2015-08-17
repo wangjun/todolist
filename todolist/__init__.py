@@ -4,7 +4,7 @@ from pyramid.authorization import ACLAuthorizationPolicy
 from sqlalchemy import engine_from_config
 from . import routers, views, subscribers, db
 from .factories import RootFactory
-from .auth import authentication
+from .auth import find_user_group, authentication
 
 
 def main(global_config, **settings):
@@ -17,13 +17,14 @@ def main(global_config, **settings):
         settings=settings,
         root_factory=RootFactory,
         authentication_policy=SessionAuthenticationPolicy(
-            callback=authentication,
+            callback=find_user_group,
         ),
         authorization_policy=ACLAuthorizationPolicy(),
     )
     config.include('plim.adapters.pyramid_renderer')
     config.include('pyramid_redis_sessions')
     config.add_static_view('static', 'static/dist', cache_max_age=3600)
+    config.add_request_method(authentication, 'user', reify=True)
     config.include(routers.add_routers)
     config.scan(views)
     config.scan(subscribers)
