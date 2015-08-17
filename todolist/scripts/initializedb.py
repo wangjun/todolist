@@ -9,6 +9,7 @@ from todolist.db import (
     Base,
 )
 from todolist.models import user
+from todolist.models import event
 
 
 def usage(argv):
