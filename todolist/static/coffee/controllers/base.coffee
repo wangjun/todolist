@@ -24,8 +24,11 @@ angular.module 'app.controllers.base', []
           $timeout ->
             $validator.reset $scope, 'modalLogin'
 
+  dueDate = new Date()
+  dueDate.setDate(dueDate.getDate() + 7)
   $scope.modalNewItem =
     title: null
+    due_date: dueDate
     autoShow: no
     showModal: ($event) ->
       $event.preventDefault()

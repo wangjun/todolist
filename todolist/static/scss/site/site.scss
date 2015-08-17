@@ -1,0 +1,23 @@
+.app-date-picker {
+    margin: 5px 0 0;
+    position: absolute;
+    z-index: 1031;
+    width: 250px;
+    background-color: #fff;
+
+    tr.app-days {
+        font-weight: bold;
+    }
+
+    th, td {
+        cursor: pointer;
+        text-align: center;
+        &:hover {
+            background: #ddd;
+        }
+    }
+
+    td.selected {
+        background: #5bc0de;
+    }
+}

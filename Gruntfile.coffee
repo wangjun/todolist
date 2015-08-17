@@ -14,6 +14,12 @@ module.exports = (grunt) ->
                     'todolist/static/dist/javascript/app.js': [
                         'todolist/static/coffee/**/*.coffee'
                     ]
+        compass:
+            web:
+                options:
+                    sassDir: 'todolist/static/scss/site'
+                    cssDir: 'todolist/static/dist/css'
+                    config: 'todolist/static/scss/config.rb'
 
         ect:
             angularDebug:
@@ -35,6 +41,7 @@ module.exports = (grunt) ->
                 ###
                 tasks: [
                     'coffee'
+                    'compass'
                     'ect:angularDebug'
                 ]
                 options:
@@ -54,6 +61,11 @@ module.exports = (grunt) ->
             coffeeApp:
                 files: ['todolist/static/coffee/**/*.coffee']
                 tasks: ['coffee:app']
+                options:
+                    spawn: no
+            compass:
+                files: ['todolist/static/scss/**/*.scss']
+                tasks: ['compass']
                 options:
                     spawn: no
             ectAngular:
