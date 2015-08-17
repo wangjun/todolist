@@ -26,13 +26,13 @@ angular.module 'app.controllers.base', []
 
   dueDate = new Date()
   dueDate.setDate(dueDate.getDate() + 7)
-  $scope.modalNewItem =
+  $scope.modalNewEvent =
     title: null
     due_date: dueDate
     autoShow: no
     showModal: ($event) ->
       $event.preventDefault()
-      $scope.modalNewItem.show()
+      $scope.modalNewEvent.show()
     submit: ($event) ->
       $event.preventDefault()
 ]
