@@ -8,7 +8,7 @@ class PageForm(Form):
         filters=[utils.int_filter]
     )
     size = IntegerField(
-        default=20,
+        default=10,
         filters=[
             utils.int_filter,
             lambda x: x if x <= 100 else 100,

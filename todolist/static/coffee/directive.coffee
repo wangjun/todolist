@@ -309,3 +309,73 @@ angular.module 'app.directive', []
       element.off 'keydown', onKeydown
       element.off 'keyup change', onKeyupAndChnage
 ]
+
+# ---------------------------------------------------------
+# app-pager
+# ---------------------------------------------------------
+.directive 'appPager', ['$injector', ($injector) ->
+  $timeout = $injector.get '$timeout'
+
+  restrict: 'A'
+  scope:
+    pageList: '=appPager'
+    urlTemplate: '@pagerUrlTemplate'
+  replace: yes
+  template: """
+        <div>
+        <span style="display: inline-block; margin: 20px 10px 20px; line-height: 29px;"><span>Total</span>: {{ pageList.total|number }}</span>
+        <ul ng-if="pageList.total > 0" class="pagination pagination-sm pull-right">
+            <li ng-class="{disabled: !links.previous.enable}">
+                <a ng-href="{{ links.previous.url }}">&laquo;</a>
+            </li>
+            <li ng-repeat="item in links.numbers"
+                ng-if="item.show"
+                ng-class="{active: item.isCurrent}">
+                <a ng-href="{{ item.url }}">{{ item.pageNumber }}</a>
+            </li>
+            <li ng-class="{disabled: !links.next.enable}">
+                <a ng-href="{{ links.next.url }}">&raquo;</a>
+            </li>
+        </ul>
+        </div>
+        """
+  link: (scope) ->
+    scope.queryString = location.search.replace /index=\d*/, ''
+    scope.queryString = scope.queryString.replace '?', ''
+
+    scope.$watch 'queryString', (queryString) ->
+      if not scope.pageList
+        scope.links =
+          previous:
+            enable: no
+          numbers: []
+          next:
+            enable: no
+        return
+
+      queryItems = []
+      for item in queryString.split('&') when scope.urlTemplate.indexOf(item) < 0
+        queryItems.push item
+      queryString = queryItems.join '&'
+      queryString = "&#{queryString}" if queryString and queryString[0] isnt '&'
+      scope.links =
+        previous:
+          enable: scope.pageList.has_previous_page
+          url: "#{scope.urlTemplate.replace '#{index}', scope.pageList.index - 1}#{queryString}"
+        numbers: []
+        next:
+          enable: scope.pageList.has_next_page
+          url: "#{scope.urlTemplate.replace '#{index}', scope.pageList.index + 1}#{queryString}"
+
+      for index in [(scope.pageList.index - 3)..(scope.pageList.index + 3)] by 1
+        scope.links.numbers.push
+          show: 0 <= index <= scope.pageList.max_index
+          isCurrent: index is scope.pageList.index
+          pageNumber: index + 1
+          url: "#{scope.urlTemplate.replace '#{index}', index}#{queryString}"
+
+    $timeout ->
+      # ui-router update location too late
+      scope.queryString = location.search.replace /index=\d*/, ''
+      scope.queryString = scope.queryString.replace '?', ''
+]

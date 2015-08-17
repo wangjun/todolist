@@ -10,6 +10,8 @@
                     <pre ng-show="event.description">{{ event.description }}</pre>
                 </div>
             </div>
+
+            <ul ng-show="events" app-pager="events" pager-url-template="/?index=#{index}" class="pull-right"></ul>
         </div>
     </div>
 </div>
